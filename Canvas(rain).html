@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas雨滴效果</title>
+    <style>
+        body{
+            margin:0;
+        }
+        canvas{
+            background-color: red;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <my-canvas></my-canvas>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+    /*
+    * 1:让canvas元素大小和浏览器高度大小一致
+    *   1.1：获取canvas元素
+    *   1.2：获取浏览器窗口宽高存起来
+    *   1.3:给canvas设置
+    *   1.4动态监听浏览器窗口
+    * */
+    Vue.component("my-canvas",{
+        template:"<canvas class='rain' :height='height' :width='width'> </canvas>" ,
+        data:function () {
+            return{
+                width:this.client().width,
+                height:this.client().height
+            }
+        },
+        methods:{
+            client:function () {//按照不同的浏览器窗口宽高设置
+                if(window.innerHeight !== undefined){
+                    return {
+                        width: window.innerWidth,
+                        height: window.innerHeight
+                    }
+                }else if(document.compatMode === "CSSCompat"){
+                    return {
+                        width: document.documentElement.clientWidth,
+                        height: document.documentElement.clientHeight
+                    }
+                }else{
+                    return {
+                        width: document.body.clientWidth,
+                        height: document.body.clientHeight
+                    }
+                }
+            }
+        },
+        computed:{
+
+        },
+        created() {
+            var that=this;
+            window.onresize = function () {
+                that.width=that.client().width;
+                that.height=that.client().height;
+            };
+        }
+    })
+    var app=new Vue({
+        el:"#app",
+        data:{
+
+        },
+        mounted:function(){
+
+        },
+        methods:{}
+
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clock(Vue+canvas)</title>
+</head>
+<body>
+<div id="app">
+    <canvas id="a" width="300" height="300">您的浏览器不支持 canvas</canvas>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+    var a = document.getElementById('a');
+    var a_context = a.getContext("2d");
+    a_context.beginPath()
+    a_context.moveTo(100,100)
+    a_context.lineTo(200,200)
+
+    a_context.stroke();
+</script>
+</body>
+</html>
